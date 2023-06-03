@@ -1,0 +1,4 @@
+<label for="todo-item-{{key}}" class="todo-item">
+  <input type="checkbox" id="todo-item-{{key}}" (change)="taskDone.emit(key)">
+  {{task}}
+</label>
