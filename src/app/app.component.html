@@ -4,7 +4,17 @@
 
 <main>
   <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
-  <app-todo-list [todoItems]="todoItems"></app-todo-list>
+
+  <div class="todo-list-wrapper">
+    <div class="todo-list pending">
+      <h2>To Do</h2>
+      <app-todo-list [todoItems]="pendingTodos"></app-todo-list>
+    </div>
+    <div class="todo-list completed">
+      <h2>Completed</h2>
+      <app-todo-list [todoItems]="completedTodos"></app-todo-list>
+    </div>
+  </div>
 </main>
 
 <footer></footer>

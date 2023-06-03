@@ -13,6 +13,14 @@ export class AppComponent {
     new TodoItem('Buy milk'),
   ];
 
+  get pendingTodos(): TodoItem[] {
+    return this.todoItems.filter((todo: TodoItem): boolean => !todo.isDone);
+  }
+
+  get completedTodos(): TodoItem[] {
+    return this.todoItems.filter((todo: TodoItem): boolean => todo.isDone);
+  }
+
   onTodoItemAdd(task: string): void {
     this.todoItems.push(new TodoItem(task));
   }
