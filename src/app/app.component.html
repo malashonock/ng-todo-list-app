@@ -6,12 +6,12 @@
   <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
 
   <div class="todo-list">
-    <div class="todo-item" *ngFor="let todoItem of todoItems; let i = index">
-      <label for="todo-item-{{i}}">
-        <input type="checkbox" id="todo-item-{{i}}" (change)="onDoTask(i)">
-        {{todoItem}}
-      </label>
-    </div>
+    <app-todo-item
+      *ngFor="let todoItem of todoItems; let i = index" 
+      [key]="i" 
+      [task]="todoItem" 
+      (taskDone)="onDoTask($event)"
+    ></app-todo-item>
   </div>
 </main>
 
