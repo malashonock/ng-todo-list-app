@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'todo-list-app';
+  newTodoItem: string = '';
+  todoItems: string[] = ['Go jogging', 'Buy milk'];
+
+  onSubmit(): void {
+    this.todoItems.push(this.newTodoItem);
+    this.newTodoItem = '';
+  }
+
+  onDoTask(index: number): void {
+    this.todoItems.splice(index, 1);
+  }
 }
