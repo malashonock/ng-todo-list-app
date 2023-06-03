@@ -1,4 +1,14 @@
-<label for="todo-item-{{key}}" class="todo-item">
-  <input type="checkbox" id="todo-item-{{key}}" (change)="taskDone.emit(key)">
-  {{task}}
+<label 
+  for="todo-item-{{todoItem.id}}"
+  [ngClass]="{ 
+    'todo-item': true, 
+    'completed': todoItem.isDone
+  }"
+>
+  <input
+    type="checkbox"
+    id="todo-item-{{todoItem.id}}"
+    (change)="onToggleTodoCompleted($event)"
+  >
+  {{todoItem.title}}
 </label>

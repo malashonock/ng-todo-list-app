@@ -3,14 +3,8 @@
 </header>
 
 <main>
-  <app-add-todo
-    (todoItemAdd)="onTodoItemAdd($event)"
-  ></app-add-todo>
-  
-  <app-todo-list 
-    [todoItems]="todoItems" 
-    (taskDone)="onDoTask($event)"
-  ></app-todo-list>
+  <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
+  <app-todo-list [todoItems]="todoItems"></app-todo-list>
 </main>
 
 <footer></footer>

@@ -6,11 +6,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./add-todo.component.scss']
 })
 export class AddTodoComponent {
-  newTodoItem: string = '';
+  newTask: string = '';
   @Output() todoItemAdd = new EventEmitter<string>();
 
   onSubmit(): void {
-    this.todoItemAdd.emit(this.newTodoItem);
-    this.newTodoItem = '';
+    this.todoItemAdd.emit(this.newTask);
+    this.newTask = '';
   }
 }

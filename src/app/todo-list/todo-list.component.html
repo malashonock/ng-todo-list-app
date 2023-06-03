@@ -1,7 +1,6 @@
 <div class="todo-list">
   <app-todo-item
-    *ngFor="let todoItem of todoItems; let i = index" 
-    [key]="i" 
-    [task]="todoItem" 
-    (taskDone)="taskDone.emit(i)"
+    *ngFor="let todoItem of todoItems"
+    [todoItem]="todoItem"
   ></app-todo-item>
+</div>
