@@ -3,10 +3,7 @@
 </header>
 
 <main>
-  <form (ngSubmit)="onSubmit()">
-    <input type="text" name="new-todo-item" placeholder="Add to-do" [(ngModel)]="newTodoItem" />
-    <button type="submit">Submit</button>
-  </form>
+  <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
 
   <div class="todo-list">
     <div class="todo-item" *ngFor="let todoItem of todoItems; let i = index">

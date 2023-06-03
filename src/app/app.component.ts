@@ -6,12 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  newTodoItem: string = '';
   todoItems: string[] = ['Go jogging', 'Buy milk'];
 
-  onSubmit(): void {
-    this.todoItems.push(this.newTodoItem);
-    this.newTodoItem = '';
+  onTodoItemAdd(todoItem: string): void {
+    this.todoItems.push(todoItem);
   }
 
   onDoTask(index: number): void {
