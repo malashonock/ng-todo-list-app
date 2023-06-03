@@ -3,16 +3,14 @@
 </header>
 
 <main>
-  <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
-
-  <div class="todo-list">
-    <app-todo-item
-      *ngFor="let todoItem of todoItems; let i = index" 
-      [key]="i" 
-      [task]="todoItem" 
-      (taskDone)="onDoTask($event)"
-    ></app-todo-item>
-  </div>
+  <app-add-todo
+    (todoItemAdd)="onTodoItemAdd($event)"
+  ></app-add-todo>
+  
+  <app-todo-list 
+    [todoItems]="todoItems" 
+    (taskDone)="onDoTask($event)"
+  ></app-todo-list>
 </main>
 
 <footer></footer>
