@@ -1,8 +1,6 @@
 .todo-item {
-  display: block;
-  border: 1px solid black;
+}
 
-  &.completed {
-    text-decoration: line-through;
-  }
+.completed {
+  text-decoration: line-through;
 }

@@ -1,13 +1,17 @@
-<label 
-  for="todo-item-{{todoItem.id}}"
-  class="todo-item"
-  [appHighlightDone]="todoItem.isDone"
->
-  <input
-    type="checkbox"
-    id="todo-item-{{todoItem.id}}"
-    [checked]="todoItem.isDone"
-    (change)="onToggleDone($event)"
-  >
-  {{todoItem.title}}
-</label>
+<mat-card class="todo-item">
+  <mat-card-content>
+    <label 
+    >
+    <mat-checkbox
+      type="checkbox"
+      id="todo-item-{{todoItem.id}}"
+      [checked]="todoItem.isDone"
+      (change)="onToggleDone($event)"
+      [appHighlightDone]="todoItem.isDone"
+    >
+        {{todoItem.title}}
+      </mat-checkbox>
+    </label>
+  </mat-card-content>
+</mat-card>
+

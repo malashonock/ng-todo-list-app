@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { TodoItem } from '../../models/todo-item';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-todo-item',
@@ -11,7 +12,7 @@ export class TodoItemComponent {
   @Input() todoItem!: TodoItem;
   @Output() toggleTodoItemDone = new EventEmitter<[number, boolean]>();
 
-  onToggleDone(event: Event): void {
-    this.toggleTodoItemDone.emit([this.todoItem.id, (event.target as HTMLInputElement).checked]);
+  onToggleDone(event: MatCheckboxChange): void {
+    this.toggleTodoItemDone.emit([this.todoItem.id, event.checked]);
   }
 }
