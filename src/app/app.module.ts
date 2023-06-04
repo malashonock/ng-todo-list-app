@@ -8,6 +8,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { FilterByStatusPipe } from './pipes/filter-by-status.pipe';
 import { HighlightDoneDirective } from './directives/highlight-done.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HighlightDoneDirective } from './directives/highlight-done.directive';
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
