@@ -5,7 +5,9 @@
 </mat-toolbar>
 
 <main>
-  <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
+  <div class="add-todo">
+    <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
+  </div>
 
   <div class="todo-list-wrapper">
     <div class="todo-list pending">

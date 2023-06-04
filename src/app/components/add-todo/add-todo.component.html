@@ -1,4 +1,7 @@
-<form (ngSubmit)="onSubmit()">
-  <input type="text" name="new-task" placeholder="Add to-do" [(ngModel)]="newTask" />
-  <button type="submit">Submit</button>
+<form (ngSubmit)="onSubmit()" class="wrapper">
+  <mat-form-field appearance="outline" class="text-field">
+    <mat-label>Add to-do</mat-label>
+    <input matInput placeholder="Enter task description" name="new-task" [(ngModel)]="newTask">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Submit</button>
 </form>

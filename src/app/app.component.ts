@@ -14,7 +14,7 @@ export class AppComponent {
   ];
 
   onTodoItemAdd(task: string): void {
-    this.todoItems.push(new TodoItem(task));
+    this.todoItems = [...this.todoItems, new TodoItem(task)];
   }
 
   onToggleTodoItemDone([todoItemId, isDone]: [number, boolean]) {
