@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { FilterByStatusPipe } from './pipes/filter-by-status.pipe';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
     AddTodoComponent,
     TodoItemComponent,
     TodoListComponent,
+    FilterByStatusPipe,
   ],
   imports: [
     BrowserModule,
