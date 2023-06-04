@@ -7,6 +7,7 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { FilterByStatusPipe } from './pipes/filter-by-status.pipe';
+import { HighlightDoneDirective } from './directives/highlight-done.directive';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FilterByStatusPipe } from './pipes/filter-by-status.pipe';
     TodoItemComponent,
     TodoListComponent,
     FilterByStatusPipe,
+    HighlightDoneDirective,
   ],
   imports: [
     BrowserModule,

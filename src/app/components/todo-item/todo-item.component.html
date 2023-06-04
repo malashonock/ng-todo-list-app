@@ -1,9 +1,7 @@
 <label 
   for="todo-item-{{todoItem.id}}"
-  [ngClass]="{ 
-    'todo-item': true, 
-    'completed': todoItem.isDone
-  }"
+  class="todo-item"
+  [appHighlightDone]="todoItem.isDone"
 >
   <input
     type="checkbox"
