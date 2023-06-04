@@ -13,15 +13,15 @@ export class AppComponent {
     new TodoItem('Buy milk'),
   ];
 
-  get pendingTodos(): TodoItem[] {
-    return this.todoItems.filter((todo: TodoItem): boolean => !todo.isDone);
-  }
-
-  get completedTodos(): TodoItem[] {
-    return this.todoItems.filter((todo: TodoItem): boolean => todo.isDone);
-  }
-
   onTodoItemAdd(task: string): void {
     this.todoItems.push(new TodoItem(task));
+  }
+
+  onToggleTodoItemDone([todoItemId, isDone]: [number, boolean]) {
+    this.todoItems = this.todoItems.map((todoItem: TodoItem): TodoItem => {
+      return todoItem.id === todoItemId 
+        ? { ...todoItem, isDone } 
+        : todoItem;
+    });
   }
 }

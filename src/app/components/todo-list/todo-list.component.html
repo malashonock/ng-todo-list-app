@@ -2,5 +2,6 @@
   <app-todo-item
     *ngFor="let todoItem of todoItems"
     [todoItem]="todoItem"
+    (toggleTodoItemDone)="onToggleTodoItemDone($event)"
   ></app-todo-item>
 </ul>

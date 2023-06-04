@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { TodoItem } from '../../models/todo-item';
 
@@ -9,4 +9,9 @@ import { TodoItem } from '../../models/todo-item';
 })
 export class TodoListComponent {
   @Input() todoItems!: TodoItem[];
+  @Output() toggleTodoItemDone = new EventEmitter<[number, boolean]>();
+
+  onToggleTodoItemDone([todoItemId, isDone]: [number, boolean]) {
+    this.toggleTodoItemDone.emit([todoItemId, isDone]);
+  }
 }

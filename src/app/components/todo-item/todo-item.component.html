@@ -9,7 +9,7 @@
     type="checkbox"
     id="todo-item-{{todoItem.id}}"
     [checked]="todoItem.isDone"
-    (change)="onToggleTodoCompleted($event)"
+    (change)="onToggleDone($event)"
   >
   {{todoItem.title}}
 </label>

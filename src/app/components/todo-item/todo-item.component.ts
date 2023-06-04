@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { TodoItem } from '../../models/todo-item';
 
@@ -9,8 +9,9 @@ import { TodoItem } from '../../models/todo-item';
 })
 export class TodoItemComponent {
   @Input() todoItem!: TodoItem;
+  @Output() toggleTodoItemDone = new EventEmitter<[number, boolean]>();
 
-  onToggleTodoCompleted(event: Event): void {
-    this.todoItem.isDone = (event.target as HTMLInputElement).checked;
+  onToggleDone(event: Event): void {
+    this.toggleTodoItemDone.emit([this.todoItem.id, (event.target as HTMLInputElement).checked]);
   }
 }
