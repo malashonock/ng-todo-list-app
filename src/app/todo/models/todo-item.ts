@@ -8,7 +8,7 @@ export class TodoItem {
     title: string,
     isDone: boolean = false,
   ) {
-    this.id = TodoItem.MaxId++;
+    this.id = ++TodoItem.MaxId;
     this.title = title;
     this.isDone = isDone;
   }
