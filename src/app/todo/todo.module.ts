@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,12 +28,14 @@ import { HighlightDoneDirective } from './directives/highlight-done.directive';
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+  ],
+  exports: [
+    TodoListPageComponent,
   ]
 })
 export class TodoModule { }
