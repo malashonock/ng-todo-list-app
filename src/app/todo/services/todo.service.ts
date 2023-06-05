@@ -6,14 +6,9 @@ import { TodoItem, TodoItemFields } from '../models/todo-item';
 
 @Injectable()
 export class TodoService {
-  url: string;
+  private url = '/todos';
 
-  constructor(
-    private httpClient: HttpClient,
-    @Inject('API_BASE_URL') private API_BASE_URL: string,
-  ) {
-    this.url = API_BASE_URL + '/todos';
-  }
+  constructor(private httpClient: HttpClient) { }
 
   getTodos(): Observable<TodoItem[]> {
     return this.httpClient.get<TodoItem[]>(this.url);
