@@ -1,0 +1,28 @@
+<mat-toolbar>
+  <header>
+    <h1>To-do List App</h1>
+  </header>
+</mat-toolbar>
+
+<main>
+  <div class="add-todo">
+    <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
+  </div>
+
+  <div class="todo-list-wrapper">
+    <div class="todo-list pending">
+      <h2>To Do</h2>
+      <app-todo-list
+        [todoItems]="todoItems | filterByStatus:false"
+        (toggleTodoItemDone)="onToggleTodoItemDone($event)"
+      ></app-todo-list>
+    </div>
+    <div class="todo-list completed">
+      <h2>Completed</h2>
+      <app-todo-list
+        [todoItems]="todoItems | filterByStatus:true"
+        (toggleTodoItemDone)="onToggleTodoItemDone($event)"
+      ></app-todo-list>
+    </div>
+  </div>
+</main>
