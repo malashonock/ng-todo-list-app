@@ -1,28 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { TodoModule } from '../todo.module';
-import { TodoItem } from '../models/todo-item';
+import { TodoItem, TodoItemFields } from '../models/todo-item';
 
 @Injectable()
 export class TodoService {
-  private todoItems: TodoItem[] = [
-    new TodoItem('Go jogging'),
-    new TodoItem('Buy milk'),
-  ];
+  url: string;
 
-  getTodos(): TodoItem[] {
-    return this.todoItems;
+  constructor(
+    private httpClient: HttpClient,
+    @Inject('API_BASE_URL') private API_BASE_URL: string,
+  ) {
+    this.url = API_BASE_URL + '/todos';
   }
 
-  addTodo(todoItem: TodoItem): void {
-    this.todoItems = [...this.todoItems, todoItem];
+  getTodos(): Observable<TodoItem[]> {
+    return this.httpClient.get<TodoItem[]>(this.url);
   }
 
-  toggleTodoItemDone(todoItemId: number, isDone: boolean) {
-    this.todoItems = this.todoItems.map((todoItem: TodoItem): TodoItem => {
-      return todoItem.id === todoItemId 
-        ? { ...todoItem, isDone } 
-        : todoItem;
+  getTodo(todoItemId: number): Observable<TodoItem> {
+    return this.httpClient.get<TodoItem>(`${this.url}/${todoItemId}`);
+  }
+
+  addTodo(todoItemData: TodoItemFields): Observable<TodoItem> {
+    return this.httpClient.post<TodoItem>(this.url, todoItemData);
+  }
+
+  toggleTodoItemDone(todoItemId: number, isDone: boolean): Observable<TodoItem> {
+    return this.httpClient.patch<TodoItem>(`${this.url}/${todoItemId}`, {
+      isDone,
     });
   }
 }

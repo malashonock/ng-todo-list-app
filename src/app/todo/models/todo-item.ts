@@ -1,15 +1,7 @@
-export class TodoItem {
-  static MaxId: number = 0;
+export interface TodoItem {
   id: number;
   title: string;
   isDone: boolean;
-
-  constructor(
-    title: string,
-    isDone: boolean = false,
-  ) {
-    this.id = ++TodoItem.MaxId;
-    this.title = title;
-    this.isDone = isDone;
-  }
 }
+
+export type TodoItemFields = Omit<TodoItem, 'id'>;

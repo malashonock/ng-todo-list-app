@@ -8,12 +8,12 @@
     {
       "id": 2,
       "title": "Buy milk",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": 3,
       "title": "Wash the car",
-      "isDone": true
+      "isDone": false
     }
   ]
 }

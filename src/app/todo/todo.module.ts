@@ -15,6 +15,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { FilterByStatusPipe } from './pipes/filter-by-status.pipe';
 import { HighlightDoneDirective } from './directives/highlight-done.directive';
 import { TodoService } from './services/todo.service';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TodoService } from './services/todo.service';
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    CoreModule,
   ],
   exports: [
     TodoListPageComponent,
