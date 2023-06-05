@@ -14,6 +14,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { FilterByStatusPipe } from './pipes/filter-by-status.pipe';
 import { HighlightDoneDirective } from './directives/highlight-done.directive';
+import { TodoService } from './services/todo.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,9 @@ import { HighlightDoneDirective } from './directives/highlight-done.directive';
   ],
   exports: [
     TodoListPageComponent,
+  ],
+  providers: [
+    TodoService,
   ]
 })
 export class TodoModule { }

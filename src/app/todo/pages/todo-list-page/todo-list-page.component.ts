@@ -1,27 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { TodoItem } from '../../models/todo-item';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-list-page',
   templateUrl: './todo-list-page.component.html',
   styleUrls: ['./todo-list-page.component.scss']
 })
-export class TodoListPageComponent {
-  todoItems: TodoItem[] = [
-    new TodoItem('Go jogging'),
-    new TodoItem('Buy milk'),
-  ];
+export class TodoListPageComponent implements OnInit {
+  todoItems: TodoItem[] = [];
+
+  constructor(private todoService: TodoService) { }
+
+  ngOnInit(): void {
+    this.todoItems = this.todoService.getTodos();
+  }
 
   onTodoItemAdd(task: string): void {
-    this.todoItems = [...this.todoItems, new TodoItem(task)];
+    this.todoService.addTodo(new TodoItem(task));
+    this.todoItems = this.todoService.getTodos(); // need that to trigger change detection
   }
 
   onToggleTodoItemDone([todoItemId, isDone]: [number, boolean]) {
-    this.todoItems = this.todoItems.map((todoItem: TodoItem): TodoItem => {
-      return todoItem.id === todoItemId 
-        ? { ...todoItem, isDone } 
-        : todoItem;
-    });
+    this.todoService.toggleTodoItemDone(todoItemId, isDone);
+    this.todoItems = this.todoService.getTodos(); // need that to trigger change detection
   }
 }
