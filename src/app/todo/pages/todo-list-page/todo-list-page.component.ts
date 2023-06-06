@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, delay, timeout } from 'rxjs';
 
 import { TodoItem } from '../../models/todo-item';
 import { TodoService } from '../../services/todo.service';
@@ -11,12 +11,17 @@ import { TodoService } from '../../services/todo.service';
 })
 export class TodoListPageComponent implements OnInit {
   todoItems: TodoItem[] = [];
+  isLoading: boolean = true;
 
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
     this.todoService.getTodos()
-      .subscribe((todoItems: TodoItem[]) => this.todoItems = todoItems);
+      .subscribe({
+        next: (todoItems: TodoItem[]) => this.todoItems = todoItems,
+        error: console.log,
+        complete: () => this.isLoading = false,
+      });
   }
 
   onTodoItemAdd(task: string): void {

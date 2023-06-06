@@ -16,6 +16,7 @@ import { HighlightDoneDirective } from './directives/highlight-done.directive';
 import { TodoService } from './services/todo.service';
 import { CoreModule } from '../core/core.module';
 import { TodoRoutingModule } from './todo-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TodoRoutingModule } from './todo-routing.module';
     MatCheckboxModule,
     CoreModule,
     TodoRoutingModule,
+    SharedModule,
   ],
   exports: [
     TodoListPageComponent,
