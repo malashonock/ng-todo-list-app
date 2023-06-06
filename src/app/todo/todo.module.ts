@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +15,7 @@ import { FilterByStatusPipe } from './pipes/filter-by-status.pipe';
 import { HighlightDoneDirective } from './directives/highlight-done.directive';
 import { TodoService } from './services/todo.service';
 import { CoreModule } from '../core/core.module';
+import { TodoRoutingModule } from './todo-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,13 +29,13 @@ import { CoreModule } from '../core/core.module';
   imports: [
     CommonModule,
     FormsModule,
-    BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
     CoreModule,
+    TodoRoutingModule,
   ],
   exports: [
     TodoListPageComponent,
