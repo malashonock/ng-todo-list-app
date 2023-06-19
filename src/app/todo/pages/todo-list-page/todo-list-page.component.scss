@@ -4,7 +4,15 @@
   flex-direction: column;
 }
 
+.wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
 .add-todo {
+  min-width: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,6 +20,7 @@
 }
 
 .todo-list-wrapper {
+  flex-grow: 1;
   display: flex;
   flex-direction: row;
 }
