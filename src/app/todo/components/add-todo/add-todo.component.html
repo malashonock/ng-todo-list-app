@@ -3,6 +3,7 @@
   <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
     <mat-label>Task description</mat-label>
     <input matInput placeholder="Enter task description" name="new-task" formControlName="title">
+    <mat-error *ngIf="todoForm.controls.title.errors?.['required']">Task description is required</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
     <mat-label>Assignee</mat-label>
@@ -12,12 +13,14 @@
       <mat-option value="Son">Son</mat-option>
       <mat-option value="Cat">Cat</mat-option>
     </mat-select>
+    <mat-error *ngIf="todoForm.controls.assignee.errors?.['required']">Assignee is required</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
     <mat-label>Due date</mat-label>
     <input matInput [matDatepicker]="dueDate" formControlName="dueDate">
     <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
     <mat-datepicker #dueDate></mat-datepicker>
+    <mat-error *ngIf="todoForm.controls.dueDate.errors?.['required']">Due date is required</mat-error>
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit" [disabled]="todoForm.invalid">Submit</button>
 </form>

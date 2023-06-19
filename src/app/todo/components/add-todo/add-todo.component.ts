@@ -34,5 +34,10 @@ export class AddTodoComponent {
       dueDate: dueDate!.toISOString(),
       isDone: false, 
     });
+
+    this.todoForm.reset();
+    Object.keys(this.todoForm.controls).forEach((key): void => {
+      (this.todoForm.controls as any)[key].setErrors(null);
+    });
   }
 }
