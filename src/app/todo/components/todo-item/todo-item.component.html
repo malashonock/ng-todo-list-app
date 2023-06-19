@@ -2,16 +2,18 @@
   <mat-card-content>
     <label 
     >
-    <mat-checkbox
-      type="checkbox"
-      id="todo-item-{{todoItem.id}}"
-      [checked]="todoItem.isDone"
-      (change)="onToggleDone($event)"
-      [appHighlightDone]="todoItem.isDone"
-    >
+      <mat-checkbox
+        type="checkbox"
+        id="todo-item-{{todoItem.id}}"
+        [checked]="todoItem.isDone"
+        (change)="onToggleDone($event)"
+        [appHighlightDone]="todoItem.isDone"
+      >
         {{todoItem.title}}
       </mat-checkbox>
     </label>
+    <div>Assignee: {{todoItem.assignee}}</div>
+    <div>Due date: {{todoItem.dueDate | date }}</div>
   </mat-card-content>
 </mat-card>
 
