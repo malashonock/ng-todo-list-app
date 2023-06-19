@@ -1,7 +1,23 @@
-<form (ngSubmit)="onSubmit()" class="wrapper">
-  <mat-form-field appearance="outline" class="text-field">
-    <mat-label>Add to-do</mat-label>
-    <input matInput placeholder="Enter task description" name="new-task" [(ngModel)]="newTask">
+<form (ngSubmit)="onSubmit()" class="wrapper" [formGroup]="todoForm">
+  <h2>Add to-do</h2>
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
+    <mat-label>Task description</mat-label>
+    <input matInput placeholder="Enter task description" name="new-task" formControlName="title">
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Submit</button>
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
+    <mat-label>Assignee</mat-label>
+    <mat-select formControlName="assignee">
+      <mat-option value="Me">Me</mat-option>
+      <mat-option value="Wife">Wife</mat-option>
+      <mat-option value="Son">Son</mat-option>
+      <mat-option value="Cat">Cat</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
+    <mat-label>Due date</mat-label>
+    <input matInput [matDatepicker]="dueDate" formControlName="dueDate">
+    <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
+    <mat-datepicker #dueDate></mat-datepicker>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="todoForm.invalid">Submit</button>
 </form>

@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+
+import { TodoItemFields } from '../../models/todo-item';
 
 @Component({
   selector: 'app-add-todo',
@@ -6,11 +9,30 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./add-todo.component.scss']
 })
 export class AddTodoComponent {
-  newTask: string = '';
-  @Output() todoItemAdd = new EventEmitter<string>();
+  todoForm = this.formBuilder.group({
+    title: ['', Validators.required],
+    assignee: ['', Validators.required],
+    dueDate: new FormControl<Date | null>(null, Validators.required),
+  });
+
+  public constructor(private formBuilder: FormBuilder) { }
+
+  @Output() todoItemAdd = new EventEmitter<TodoItemFields>();
 
   onSubmit(): void {
-    this.todoItemAdd.emit(this.newTask);
-    this.newTask = '';
+    console.log(this.todoForm);
+
+    if (this.todoForm.invalid) {
+      return;
+    }
+
+    const { title, assignee, dueDate } = this.todoForm.value;
+
+    this.todoItemAdd.emit({
+      title: title!,
+      assignee: assignee!,
+      dueDate: dueDate!.toISOString(),
+      isDone: false, 
+    });
   }
 }
