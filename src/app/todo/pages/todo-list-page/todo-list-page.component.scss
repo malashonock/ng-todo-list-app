@@ -14,7 +14,6 @@
 .add-todo {
   min-width: 15%;
   display: flex;
-  align-items: center;
   justify-content: center;
   padding: 1rem;
 }
@@ -23,6 +22,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: row;
+  padding-top: 1rem;
 }
 
 .todo-list {
