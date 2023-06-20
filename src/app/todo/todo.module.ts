@@ -20,6 +20,7 @@ import { TodoService } from './services/todo.service';
 import { CoreModule } from '../core/core.module';
 import { TodoRoutingModule } from './todo-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { SentenceCasePipe } from '../shared/pipes/sentence-case.pipe';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   providers: [
     TodoService,
+    SentenceCasePipe,
   ]
 })
 export class TodoModule { }
