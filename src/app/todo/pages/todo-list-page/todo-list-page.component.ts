@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, delay, timeout } from 'rxjs';
 
-import { TodoItem, TodoItemFields } from '../../models/todo-item';
+import { TodoItem, NewTodoItemFields } from '../../models/todo-item';
 import { TodoService } from '../../services/todo.service';
 
 @Component({
@@ -24,8 +24,11 @@ export class TodoListPageComponent implements OnInit {
       });
   }
 
-  onTodoItemAdd(newTodo: TodoItemFields): void {
-    this.todoService.addTodo(newTodo).subscribe((createdTodoItem: TodoItem) => {
+  onTodoItemAdd(newTodo: NewTodoItemFields): void {
+    this.todoService.addTodo({
+      ...newTodo,
+      isDone: false,
+    }).subscribe((createdTodoItem: TodoItem) => {
       this.todoItems = [...this.todoItems, createdTodoItem];
     });
   }

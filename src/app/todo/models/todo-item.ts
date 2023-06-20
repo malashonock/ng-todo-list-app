@@ -7,3 +7,4 @@ export interface TodoItem {
 }
 
 export type TodoItemFields = Omit<TodoItem, 'id'>;
+export type NewTodoItemFields = Omit<TodoItemFields, 'isDone'>;

@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
-import { TodoItemFields } from '../../models/todo-item';
+import { NewTodoItemFields } from '../../models/todo-item';
+import { SentenceCasePipe } from 'src/app/shared/pipes/sentence-case/sentence-case.pipe';
+import { SplitCamelCasePipe } from 'src/app/shared/pipes/split-camel-case/split-camel-case.pipe';
 
 @Component({
   selector: 'app-add-todo',
@@ -10,15 +12,42 @@ import { TodoItemFields } from '../../models/todo-item';
 })
 export class AddTodoComponent {
   todoForm = this.formBuilder.group({
-    title: ['', Validators.required],
+    title: ['', [Validators.required, Validators.minLength(2)]],
     assignee: ['', Validators.required],
-    dueDate: new FormControl<Date | null>(null, Validators.required),
+    dueDate: [null as Date | null, Validators.required],
   });
 
-  public constructor(private formBuilder: FormBuilder) { }
+  public constructor(
+    private formBuilder: FormBuilder,
+    private sentenceCasePipe: SentenceCasePipe,
+    private splitCamelCasePipe: SplitCamelCasePipe,
+  ) { }
 
-  @Output() todoItemAdd = new EventEmitter<TodoItemFields>();
+  getErrorMessage(fieldName: keyof NewTodoItemFields): string | null {
+    const fieldErrors = this.todoForm.controls[fieldName].errors;
 
+    if (!fieldErrors) {
+      return null;
+    }
+
+    const fieldNamePrettified = this.sentenceCasePipe.transform(
+      this.splitCamelCasePipe.transform(fieldName),
+    );
+
+    if (fieldErrors?.['required']) {
+      return `${fieldNamePrettified} is required`;
+    }
+    
+    if (fieldErrors?.['minlength']) {
+      const { requiredLength } = fieldErrors?.['minlength'];
+      return `${fieldNamePrettified} should be no shorter than ${requiredLength} symbols`;
+    }
+    
+    return `${fieldNamePrettified} value is not valid`;
+  }
+  
+  @Output() todoItemAdd = new EventEmitter<NewTodoItemFields>();
+  
   onSubmit(): void {
     console.log(this.todoForm);
 
@@ -32,7 +61,6 @@ export class AddTodoComponent {
       title: title!,
       assignee: assignee!,
       dueDate: dueDate!.toISOString(),
-      isDone: false, 
     });
 
     this.todoForm.reset();
