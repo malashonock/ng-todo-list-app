@@ -20,7 +20,8 @@ import { TodoService } from './services/todo.service';
 import { CoreModule } from '../core/core.module';
 import { TodoRoutingModule } from './todo-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { SentenceCasePipe } from '../shared/pipes/sentence-case.pipe';
+import { SentenceCasePipe } from '../shared/pipes/sentence-case/sentence-case.pipe';
+import { SplitCamelCasePipe } from '../shared/pipes/split-camel-case/split-camel-case.pipe';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SentenceCasePipe } from '../shared/pipes/sentence-case.pipe';
   providers: [
     TodoService,
     SentenceCasePipe,
+    SplitCamelCasePipe,
   ]
 })
 export class TodoModule { }
