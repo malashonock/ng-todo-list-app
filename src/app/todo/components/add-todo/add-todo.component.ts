@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { NewTodoItemFields } from '../../models/todo-item';
 import { SentenceCasePipe } from 'src/app/shared/pipes/sentence-case/sentence-case.pipe';
 import { SplitCamelCasePipe } from 'src/app/shared/pipes/split-camel-case/split-camel-case.pipe';
+import { DateValidator } from 'src/app/shared/validators/date-validator';
 
 @Component({
   selector: 'app-add-todo',
@@ -25,7 +27,7 @@ export class AddTodoComponent {
       validators: [Validators.required],
     }],
     dueDate: [AddTodoComponent.InitialValues.dueDate, {
-      validators: [Validators.required],
+      validators: [Validators.required, DateValidator.min(new Date())],
     }],
   });
 
@@ -33,6 +35,7 @@ export class AddTodoComponent {
     private formBuilder: FormBuilder,
     private sentenceCasePipe: SentenceCasePipe,
     private splitCamelCasePipe: SplitCamelCasePipe,
+    private datePipe: DatePipe,
   ) { }
 
   getErrorMessage(fieldName: keyof NewTodoItemFields): string | null {
@@ -42,20 +45,26 @@ export class AddTodoComponent {
       return null;
     }
 
-    const fieldNamePrettified = this.sentenceCasePipe.transform(
+    const fieldNameFormatted = this.sentenceCasePipe.transform(
       this.splitCamelCasePipe.transform(fieldName),
     );
 
     if (fieldErrors?.['required']) {
-      return `${fieldNamePrettified} is required`;
+      return `${fieldNameFormatted} is required`;
     }
     
     if (fieldErrors?.['minlength']) {
       const { requiredLength } = fieldErrors?.['minlength'];
-      return `${fieldNamePrettified} should be no shorter than ${requiredLength} symbols`;
+      return `${fieldNameFormatted} should be no shorter than ${requiredLength} symbols`;
+    }
+
+    if (fieldErrors?.['minDate']) {
+      const { minDate } = fieldErrors?.['minDate'];
+      const minDateFormatted = this.datePipe.transform(minDate as Date);
+      return `${fieldNameFormatted} should be not earlier than ${minDateFormatted}`;
     }
     
-    return `${fieldNamePrettified} value is not valid`;
+    return `${fieldNameFormatted} value is not valid`;
   }
   
   @Output() todoItemAdd = new EventEmitter<NewTodoItemFields>();
