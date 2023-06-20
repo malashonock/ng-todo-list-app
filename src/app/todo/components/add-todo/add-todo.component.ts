@@ -11,10 +11,16 @@ import { SplitCamelCasePipe } from 'src/app/shared/pipes/split-camel-case/split-
   styleUrls: ['./add-todo.component.scss']
 })
 export class AddTodoComponent {
+  private static InitialValues = {
+    title: '',
+    assignee: '',
+    dueDate: null as Date | null,
+  };
+
   todoForm = this.formBuilder.group({
-    title: ['', [Validators.required, Validators.minLength(2)]],
-    assignee: ['', Validators.required],
-    dueDate: [null as Date | null, Validators.required],
+    title: [AddTodoComponent.InitialValues.title, [Validators.required, Validators.minLength(2)]],
+    assignee: [AddTodoComponent.InitialValues.assignee, Validators.required],
+    dueDate: [AddTodoComponent.InitialValues.dueDate, Validators.required],
   });
 
   public constructor(
@@ -47,6 +53,15 @@ export class AddTodoComponent {
   }
   
   @Output() todoItemAdd = new EventEmitter<NewTodoItemFields>();
+
+  private reset(): void {
+    this.todoForm.reset(AddTodoComponent.InitialValues);
+
+    // Clear error state for each control
+    Object.keys(this.todoForm.controls).forEach((key): void => {
+      (this.todoForm.controls as any)[key].setErrors(null);
+    });
+  }
   
   onSubmit(): void {
     console.log(this.todoForm);
@@ -63,9 +78,6 @@ export class AddTodoComponent {
       dueDate: dueDate!.toISOString(),
     });
 
-    this.todoForm.reset();
-    Object.keys(this.todoForm.controls).forEach((key): void => {
-      (this.todoForm.controls as any)[key].setErrors(null);
-    });
+    this.reset();
   }
 }
