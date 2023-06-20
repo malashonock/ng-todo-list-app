@@ -18,9 +18,15 @@ export class AddTodoComponent {
   };
 
   todoForm = this.formBuilder.group({
-    title: [AddTodoComponent.InitialValues.title, [Validators.required, Validators.minLength(2)]],
-    assignee: [AddTodoComponent.InitialValues.assignee, Validators.required],
-    dueDate: [AddTodoComponent.InitialValues.dueDate, Validators.required],
+    title: [AddTodoComponent.InitialValues.title, {
+      validators: [Validators.required, Validators.minLength(2)],
+    }],
+    assignee: [AddTodoComponent.InitialValues.assignee, {
+      validators: [Validators.required],
+    }],
+    dueDate: [AddTodoComponent.InitialValues.dueDate, {
+      validators: [Validators.required],
+    }],
   });
 
   public constructor(
