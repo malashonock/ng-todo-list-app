@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, delay, timeout } from 'rxjs';
+import { Store } from '@ngrx/store';
 
-import { TodoItem, NewTodoItemFields } from '../../models/todo-item';
-import { TodoService } from '../../services/todo.service';
+import { NewTodoItemFields } from '../../models/todo-item';
+import { selectLoading, selectTodos } from '../../state/todo.selectors';
+import { TodoActions } from '../../state/todo.actions';
 
 @Component({
   selector: 'app-todo-list-page',
@@ -10,34 +11,28 @@ import { TodoService } from '../../services/todo.service';
   styleUrls: ['./todo-list-page.component.scss']
 })
 export class TodoListPageComponent implements OnInit {
-  todoItems: TodoItem[] = [];
-  isLoading: boolean = true;
+  todoItems$ = this.store.select(selectTodos);
+  isLoading$ = this.store.select(selectLoading);
 
-  constructor(private todoService: TodoService) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.todoService.getTodos()
-      .subscribe({
-        next: (todoItems: TodoItem[]) => this.todoItems = todoItems,
-        error: console.log,
-        complete: () => this.isLoading = false,
-      });
+    this.store.dispatch(TodoActions.fetchTodos());
   }
 
   onTodoItemAdd(newTodo: NewTodoItemFields): void {
-    this.todoService.addTodo({
-      ...newTodo,
-      isDone: false,
-    }).subscribe((createdTodoItem: TodoItem) => {
-      this.todoItems = [...this.todoItems, createdTodoItem];
-    });
+    this.store.dispatch(TodoActions.createTodo({
+      todoData: {
+        ...newTodo,
+        isDone: false,
+      },
+    }));
   }
 
   onToggleTodoItemDone([todoItemId, isDone]: [number, boolean]) {
-    this.todoService.toggleTodoItemDone(todoItemId, isDone).subscribe((updatedTodoItem: TodoItem) => {
-      this.todoItems = this.todoItems.map((todoItem: TodoItem): TodoItem => {
-        return todoItem.id === updatedTodoItem.id ? updatedTodoItem : todoItem;
-      });
-    });
+    this.store.dispatch(TodoActions.toggleTodoDone({
+      todoId: todoItemId,
+      isDone,
+    }));
   }
 }

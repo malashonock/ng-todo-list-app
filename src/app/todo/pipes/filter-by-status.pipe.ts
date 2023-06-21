@@ -6,8 +6,10 @@ import { TodoItem } from '../models/todo-item';
 })
 export class FilterByStatusPipe implements PipeTransform {
 
-  transform(todoList: TodoItem[], isDone: boolean): TodoItem[] {
-    return todoList.filter((todoItem: TodoItem): boolean => todoItem.isDone === isDone);
+  transform(todoList: TodoItem[] | null, isDone: boolean): TodoItem[] {
+    return todoList
+      ? todoList.filter((todoItem: TodoItem): boolean => todoItem.isDone === isDone)
+      : [];
   }
 
 }
