@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { NewTodoItemFields } from '../../models/todo-item';
+import { NewTodoItemFields, TodoItem } from '../../models/todo-item';
 import { selectLoading, selectTodos } from '../../state/todo.selectors';
 import { TodoActions } from '../../state/todo.actions';
 
@@ -11,8 +12,8 @@ import { TodoActions } from '../../state/todo.actions';
   styleUrls: ['./todo-list-page.component.scss']
 })
 export class TodoListPageComponent implements OnInit {
-  todoItems$ = this.store.select(selectTodos);
-  isLoading$ = this.store.select(selectLoading);
+  todoItems$: Observable<TodoItem[]> = this.store.select(selectTodos);
+  isLoading$: Observable<number> = this.store.select(selectLoading);
 
   constructor(private store: Store) { }
 

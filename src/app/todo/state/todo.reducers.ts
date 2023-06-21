@@ -17,7 +17,7 @@ export const initiateFetchReducer: OnReducer<
   ]
 > = (state) => ({
   ...state,
-  loading: true,
+  loading: state.loading + 1,
   error: null,
 });
 
@@ -28,7 +28,7 @@ export const fetchFailureReducer: OnReducer<
   ]
 > = (state, { error }) => ({
   ...state,
-  loading: false,
+  loading: state.loading - 1,
   error,
 });
 
@@ -38,7 +38,7 @@ export const fetchTodosSuccessReducer: OnReducer<
   ]
 > = (state, { todos }) => ({
   ...state,
-  loading: false,
+  loading: state.loading - 1,
   todos,
 });
 
@@ -48,7 +48,6 @@ export const createTodoSuccessReducer: OnReducer<
   ]
 > = (state, { todo }) => ({
   ...state,
-  loading: false,
   todos: [
     ...state.todos,
     todo,

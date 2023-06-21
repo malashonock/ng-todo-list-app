@@ -6,13 +6,13 @@ import * as TodoActionReducers from './todo.reducers';
 
 export interface TodoState {
   todos: TodoItem[];
-  loading: boolean;
+  loading: number;
   error: string | null;
 }
 
 const initialState: TodoState = {
   todos: [],
-  loading: false,
+  loading: 0,
   error: null,
 };
 
