@@ -4,48 +4,41 @@ import { TodoState } from './todo.feature';
 import { TodoActions } from './todo.actions';
 import { TodoItem } from '../models/todo-item';
 
-export const identityReducer: OnReducer<
-  TodoState, [
-    typeof TodoActions.toggleTodoDoneSuccess,
-  ]
-> = (state) => state;
-
-export const initiateFetchReducer: OnReducer<
-  TodoState, [
-    typeof TodoActions.fetchTodos,
-    typeof TodoActions.createTodo,
-  ]
+export const loadingStartReducer: OnReducer<
+  TodoState, 
+  [typeof TodoActions.loadingStart]
 > = (state) => ({
   ...state,
   loading: state.loading + 1,
-  error: null,
 });
 
-export const fetchFailureReducer: OnReducer<
-  TodoState, [
-    typeof TodoActions.fetchTodosFailure,
-    typeof TodoActions.createTodoFailure,
-  ]
-> = (state, { error }) => ({
+export const loadingFinishReducer: OnReducer<
+  TodoState,
+  [typeof TodoActions.loadingFinish]
+> = (state) => ({
   ...state,
   loading: state.loading - 1,
+});
+
+export const ErrorRaiseReducer: OnReducer<
+  TodoState,
+  [typeof TodoActions.errorRaise]
+> = (state, { error }) => ({
+  ...state,
   error,
 });
 
 export const fetchTodosSuccessReducer: OnReducer<
-  TodoState, [
-    typeof TodoActions.fetchTodosSuccess,
-  ]
+  TodoState,
+  [typeof TodoActions.fetchTodosSuccess]
 > = (state, { todos }) => ({
   ...state,
-  loading: state.loading - 1,
   todos,
 });
 
 export const createTodoSuccessReducer: OnReducer<
-  TodoState, [
-    typeof TodoActions.createTodoSuccess,
-  ]
+  TodoState,
+  [typeof TodoActions.createTodoSuccess]
 > = (state, { todo }) => ({
   ...state,
   todos: [

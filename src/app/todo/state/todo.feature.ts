@@ -20,23 +20,12 @@ export const TodoFeature = createFeature({
   name: 'todo',
   reducer: createReducer(
     initialState,
-    on(
-      TodoActions.fetchTodos,
-      TodoActions.createTodo,
-      TodoActionReducers.initiateFetchReducer,
-    ),
     on(TodoActions.fetchTodosSuccess, TodoActionReducers.fetchTodosSuccessReducer),
     on(TodoActions.createTodoSuccess, TodoActionReducers.createTodoSuccessReducer),
-    on(
-      TodoActions.fetchTodosFailure,
-      TodoActions.createTodoFailure,
-      TodoActionReducers.fetchFailureReducer,
-    ),
     on(
       TodoActions.toggleTodoDone,
       TodoActions.toggleTodoDoneRollback,
       TodoActionReducers.toggleTodoReducer,
     ),
-    on(TodoActions.toggleTodoDoneSuccess, TodoActionReducers.identityReducer),
   ),
 });
