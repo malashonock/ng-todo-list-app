@@ -88,8 +88,6 @@ export class AddTodoComponent {
   }
   
   onSubmit(): void {
-    console.log(this.todoForm);
-
     if (this.todoForm.invalid) {
       return;
     }
