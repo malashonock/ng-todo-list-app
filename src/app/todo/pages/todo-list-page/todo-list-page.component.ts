@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { NewTodoItemFields, TodoItem } from '../../models/todo-item';
-import { selectLoading, selectTodos } from '../../state/todo.selectors';
+import { selectTodos } from '../../state/todo.selectors';
 import { TodoActions } from '../../state/todo.actions';
+import { selectLoading } from 'app/state/app.selectors';
 
 @Component({
   selector: 'app-todo-list-page',
@@ -12,10 +13,13 @@ import { TodoActions } from '../../state/todo.actions';
   styleUrls: ['./todo-list-page.component.scss']
 })
 export class TodoListPageComponent implements OnInit {
-  todoItems$: Observable<TodoItem[]> = this.store.select(selectTodos);
-  isLoading$: Observable<number> = this.store.select(selectLoading);
+  todoItems$: Observable<TodoItem[]>;
+  loading$: Observable<number>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    this.loading$ = this.store.select(selectLoading); 
+    this.todoItems$ = this.store.select(selectTodos); 
+  }
 
   ngOnInit(): void {
     this.store.dispatch(TodoActions.fetchTodos());

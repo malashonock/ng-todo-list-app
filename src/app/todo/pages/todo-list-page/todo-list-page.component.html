@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="!(isLoading$ | async); else loadingSpinner">
+<div class="wrapper" *ngIf="!(loading$ | async); else loadingSpinner">
   <div class="add-todo">
     <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
   </div>
