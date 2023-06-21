@@ -13,15 +13,13 @@ const initialState: AppState = {
   error: null,
 };
 
-const appReducer = createReducer(
-  initialState,
-  on(AppActions.loadingStart, AppActionReducers.loadingStartReducer),
-  on(AppActions.loadingFinish, AppActionReducers.loadingFinishReducer),
-  on(AppActions.errorRaise, AppActionReducers.ErrorRaiseReducer),
-  on(AppActions.errorClear, AppActionReducers.ErrorClearReducer),
-);
-
 export const AppSlice = {
   name: 'app',
-  reducer: appReducer,
+  reducer: createReducer(
+    initialState,
+    on(AppActions.loadingStart, AppActionReducers.loadingStartReducer),
+    on(AppActions.loadingFinish, AppActionReducers.loadingFinishReducer),
+    on(AppActions.errorRaise, AppActionReducers.ErrorRaiseReducer),
+    on(AppActions.errorClear, AppActionReducers.ErrorClearReducer),
+  ),
 }
