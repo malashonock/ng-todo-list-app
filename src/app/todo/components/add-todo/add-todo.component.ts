@@ -19,6 +19,15 @@ export class AddTodoComponent {
     dueDate: null as Date | null,
   };
 
+  private today: Date = (() => {
+    const date = new Date();
+    date.setHours(0);
+    date.setMinutes(0);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+    return date;
+  })();
+
   todoForm = this.formBuilder.group({
     title: [AddTodoComponent.InitialValues.title, {
       validators: [Validators.required, Validators.minLength(2)],
@@ -27,7 +36,7 @@ export class AddTodoComponent {
       validators: [Validators.required],
     }],
     dueDate: [AddTodoComponent.InitialValues.dueDate, {
-      validators: [Validators.required, DateValidator.min(new Date())],
+      validators: [Validators.required, DateValidator.min(this.today)],
     }],
   });
 
