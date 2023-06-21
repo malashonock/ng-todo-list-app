@@ -9,6 +9,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
@@ -22,6 +24,8 @@ import { TodoRoutingModule } from './todo-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { SentenceCasePipe } from '../shared/pipes/sentence-case/sentence-case.pipe';
 import { SplitCamelCasePipe } from '../shared/pipes/split-camel-case/split-camel-case.pipe';
+import { TodoFeature } from './state/todo.feature';
+import { TodoEffects } from './state/todo.effects';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,8 @@ import { SplitCamelCasePipe } from '../shared/pipes/split-camel-case/split-camel
     CoreModule,
     TodoRoutingModule,
     SharedModule,
+    StoreModule.forFeature(TodoFeature.name, TodoFeature.reducer),
+    EffectsModule.forFeature(TodoEffects),
   ],
   exports: [
     TodoListPageComponent,
