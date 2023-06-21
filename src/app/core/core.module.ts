@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { AppSlice } from '../state/app.slice';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
     CommonModule,
     MatToolbarModule,
     HttpClientModule,
+    
   ],
   exports: [
     HeaderComponent,

@@ -24,7 +24,7 @@ import { TodoRoutingModule } from './todo-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { SentenceCasePipe } from '../shared/pipes/sentence-case/sentence-case.pipe';
 import { SplitCamelCasePipe } from '../shared/pipes/split-camel-case/split-camel-case.pipe';
-import { TodoFeature } from './state/todo.feature';
+import { TodoSlice } from './state/todo.slice';
 import { TodoEffects } from './state/todo.effects';
 
 @NgModule({
@@ -50,8 +50,8 @@ import { TodoEffects } from './state/todo.effects';
     CoreModule,
     TodoRoutingModule,
     SharedModule,
-    StoreModule.forFeature(TodoFeature.name, TodoFeature.reducer),
-    EffectsModule.forFeature(TodoEffects),
+    StoreModule.forFeature(TodoSlice),
+    EffectsModule.forFeature([TodoEffects]),
   ],
   exports: [
     TodoListPageComponent,

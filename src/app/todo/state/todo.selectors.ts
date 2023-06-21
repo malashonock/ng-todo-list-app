@@ -1,8 +1,3 @@
-import { TodoFeature } from './todo.feature';
+import { TodoSlice } from './todo.slice';
 
-export const {
-  selectTodoState,
-  selectTodos,
-  selectLoading,
-  selectError,
-} = TodoFeature;
+export const { selectTodos } = TodoSlice;

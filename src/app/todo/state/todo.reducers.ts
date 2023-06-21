@@ -1,34 +1,10 @@
 import { OnReducer } from '@ngrx/store/src/reducer_creator';
 
-import { TodoState } from './todo.feature';
+import { TodoState } from './todo.slice';
 import { TodoActions } from './todo.actions';
 import { TodoItem } from '../models/todo-item';
 
-export const loadingStartReducer: OnReducer<
-  TodoState, 
-  [typeof TodoActions.loadingStart]
-> = (state) => ({
-  ...state,
-  loading: state.loading + 1,
-});
-
-export const loadingFinishReducer: OnReducer<
-  TodoState,
-  [typeof TodoActions.loadingFinish]
-> = (state) => ({
-  ...state,
-  loading: state.loading - 1,
-});
-
-export const ErrorRaiseReducer: OnReducer<
-  TodoState,
-  [typeof TodoActions.errorRaise]
-> = (state, { error }) => ({
-  ...state,
-  error,
-});
-
-export const fetchTodosSuccessReducer: OnReducer<
+const fetchTodosSuccessReducer: OnReducer<
   TodoState,
   [typeof TodoActions.fetchTodosSuccess]
 > = (state, { todos }) => ({
@@ -36,7 +12,7 @@ export const fetchTodosSuccessReducer: OnReducer<
   todos,
 });
 
-export const createTodoSuccessReducer: OnReducer<
+const createTodoSuccessReducer: OnReducer<
   TodoState,
   [typeof TodoActions.createTodoSuccess]
 > = (state, { todo }) => ({
@@ -47,7 +23,7 @@ export const createTodoSuccessReducer: OnReducer<
   ],
 });
 
-export const toggleTodoReducer: OnReducer<
+const toggleTodoReducer: OnReducer<
   TodoState, [
     typeof TodoActions.toggleTodoDone,
     typeof TodoActions.toggleTodoDoneRollback,
@@ -62,3 +38,9 @@ export const toggleTodoReducer: OnReducer<
       } : todo;
   }),
 });
+
+export const TodoActionReducers = {
+  fetchTodosSuccessReducer,
+  createTodoSuccessReducer,
+  toggleTodoReducer,
+};

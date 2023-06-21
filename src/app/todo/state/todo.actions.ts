@@ -3,12 +3,8 @@ import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { TodoItemFields, TodoItem } from '../models/todo-item';
 
 export const TodoActions = createActionGroup({
-  source: 'Todos API',
+  source: 'Todos',
   events: {
-    'Loading Start': emptyProps(),
-    'Loading Finish': emptyProps(),
-    'Error Raise': props<{ error: string }>(),
-    'Error Clear': emptyProps(),
     'Fetch Todos': emptyProps(),
     'Fetch Todos Success': props<{ todos: TodoItem[] }>(),
     'Create Todo': props<{ todoData: TodoItemFields }>(),

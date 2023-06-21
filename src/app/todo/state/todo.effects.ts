@@ -6,7 +6,8 @@ import { catchError, finalize, map, of, switchMap, tap } from 'rxjs';
 import { TodoActions } from './todo.actions';
 import { TodoService } from '../services/todo.service';
 import { TodoItem } from '../models/todo-item';
-import { TodoState } from './todo.feature';
+import { TodoState } from './todo.slice';
+import { AppActions } from 'app/state/app.actions';
 
 @Injectable()
 export class TodoEffects {
@@ -19,12 +20,12 @@ export class TodoEffects {
   fetchTodos$ = createEffect(() => 
     this.actions$.pipe(
       ofType(TodoActions.fetchTodos),
-      tap(() => this.store.dispatch(TodoActions.loadingStart())),
-      tap(() => this.store.dispatch(TodoActions.errorClear())),
+      tap(() => this.store.dispatch(AppActions.errorClear())),
+      tap(() => this.store.dispatch(AppActions.loadingStart())),
       switchMap(() => this.todoService.getTodos().pipe(
           map((todos: TodoItem[]) => TodoActions.fetchTodosSuccess({ todos })),
-          catchError(() => of(TodoActions.errorRaise({ error: 'Failed to fetch todos' }))),
-          finalize(() => this.store.dispatch(TodoActions.loadingFinish())),
+          catchError(() => of(AppActions.errorRaise({ error: 'Failed to fetch todos' }))),
+          finalize(() => this.store.dispatch(AppActions.loadingFinish())),
         ),
       ),
     ),
@@ -33,13 +34,13 @@ export class TodoEffects {
   addTodo$ = createEffect(() => 
     this.actions$.pipe(
       ofType(TodoActions.createTodo),
-      tap(() => this.store.dispatch(TodoActions.loadingStart())),
-      tap(() => this.store.dispatch(TodoActions.errorClear())),
+      tap(() => this.store.dispatch(AppActions.errorClear())),
+      tap(() => this.store.dispatch(AppActions.loadingStart())),
       switchMap(({ todoData }: ReturnType<typeof TodoActions.createTodo>) => 
         this.todoService.addTodo(todoData).pipe(
           map((todo: TodoItem) => TodoActions.createTodoSuccess({ todo })),
-          catchError(() => of(TodoActions.errorRaise({ error: 'Failed to create todo' }))),
-          finalize(() => this.store.dispatch(TodoActions.loadingFinish())),
+          catchError(() => of(AppActions.errorRaise({ error: 'Failed to create todo' }))),
+          finalize(() => this.store.dispatch(AppActions.loadingFinish())),
         ),
       ),
     ),
