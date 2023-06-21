@@ -13,7 +13,7 @@ import { AppActions } from 'app/state/app.actions';
 export class TodoEffects {
   constructor(
     private actions$: Actions,
-    private store: Store<TodoState>,
+    private store: Store,
     private todoService: TodoService,
   ) { }
 
