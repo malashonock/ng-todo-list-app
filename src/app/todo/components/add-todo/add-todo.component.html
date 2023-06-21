@@ -1,10 +1,12 @@
 <form (ngSubmit)="onSubmit()" class="wrapper" [formGroup]="todoForm">
   <h2>Add to-do</h2>
+
   <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
     <mat-label>Task description</mat-label>
     <input matInput placeholder="Enter task description" name="new-task" formControlName="title">
     <mat-error *ngIf="todoForm.controls.title.errors">{{getErrorMessage('title')}}</mat-error>
   </mat-form-field>
+
   <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
     <mat-label>Assignee</mat-label>
     <mat-select formControlName="assignee">
@@ -15,6 +17,7 @@
     </mat-select>
     <mat-error *ngIf="todoForm.controls.assignee.errors">{{getErrorMessage('assignee')}}</mat-error>
   </mat-form-field>
+
   <mat-form-field appearance="outline" subscriptSizing="dynamic" class="form-field">
     <mat-label>Due date</mat-label>
     <input matInput [matDatepicker]="dueDate" formControlName="dueDate">
@@ -22,5 +25,6 @@
     <mat-datepicker #dueDate></mat-datepicker>
     <mat-error *ngIf="todoForm.controls.dueDate.errors">{{getErrorMessage('dueDate')}}</mat-error>
   </mat-form-field>
+  
   <button mat-raised-button color="primary" type="submit" [disabled]="todoForm.invalid">Submit</button>
 </form>
