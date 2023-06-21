@@ -3,9 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 import { NewTodoItemFields } from '../../models/todo-item';
-import { SentenceCasePipe } from 'src/app/shared/pipes/sentence-case/sentence-case.pipe';
-import { SplitCamelCasePipe } from 'src/app/shared/pipes/split-camel-case/split-camel-case.pipe';
-import { DateValidator } from 'src/app/shared/validators/date-validator';
+import { SentenceCasePipe } from 'app/shared/pipes/sentence-case/sentence-case.pipe';
+import { SplitCamelCasePipe } from 'app/shared/pipes/split-camel-case/split-camel-case.pipe';
+import { DateValidator } from 'app/shared/validators/date-validator';
 
 @Component({
   selector: 'app-add-todo',
