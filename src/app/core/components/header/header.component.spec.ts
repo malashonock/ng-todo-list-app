@@ -1,6 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { HeaderComponent } from './header.component';
+
+@Component({
+  selector: 'mat-toolbar',
+  template: '<ng-content></ng-content>',
+})
+class MockMatToolbarComponent { }
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,7 +16,10 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
+      declarations: [
+        HeaderComponent,
+        MockMatToolbarComponent,
+      ],
     });
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -17,5 +28,10 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the correct title', () => {
+    const h1DebugEl = fixture.debugElement.query(By.css('h1'));
+    expect(h1DebugEl.nativeElement.textContent).toBe('To-do List App');
   });
 });
