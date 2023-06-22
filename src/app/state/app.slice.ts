@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 
 import { AppActions } from './app.actions';
 import { AppActionReducers } from './app.reducers';
@@ -13,7 +13,7 @@ const initialState: AppState = {
   error: null,
 };
 
-export const AppSlice = {
+export const AppSlice = createFeature({
   name: 'app',
   reducer: createReducer(
     initialState,
@@ -22,4 +22,4 @@ export const AppSlice = {
     on(AppActions.errorRaise, AppActionReducers.ErrorRaiseReducer),
     on(AppActions.errorClear, AppActionReducers.ErrorClearReducer),
   ),
-}
+});
