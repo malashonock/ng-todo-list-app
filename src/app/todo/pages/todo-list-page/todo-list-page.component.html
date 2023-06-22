@@ -1,9 +1,9 @@
-<div class="wrapper" *ngIf="!(loading$ | async); else loadingSpinner">
+<div class="wrapper">
   <div class="add-todo">
     <app-add-todo (todoItemAdd)="onTodoItemAdd($event)"></app-add-todo>
   </div>
   
-  <div class="todo-list-wrapper">
+  <div class="todo-list-wrapper" *ngIf="!(loading$ | async); else loadingSpinner">
     <div class="todo-list pending">
       <h2>To Do</h2>
       <app-todo-list
