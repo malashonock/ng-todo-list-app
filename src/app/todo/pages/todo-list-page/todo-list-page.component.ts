@@ -13,13 +13,10 @@ import { selectLoading } from 'app/state/app.selectors';
   styleUrls: ['./todo-list-page.component.scss']
 })
 export class TodoListPageComponent implements OnInit {
-  todoItems$: Observable<TodoItem[]>;
-  loading$: Observable<number>;
+  todoItems$: Observable<TodoItem[]> = this.store.select(selectTodos);
+  loading$: Observable<number> = this.store.select(selectLoading);
 
-  constructor(private store: Store) {
-    this.loading$ = this.store.select(selectLoading); 
-    this.todoItems$ = this.store.select(selectTodos); 
-  }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(TodoActions.fetchTodos());
