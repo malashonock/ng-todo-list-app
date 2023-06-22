@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundPageComponent should match snapshot 1`] = `
+<h1>
+  404 - Page Not Found
+</h1>
+`;
+
+exports[`NotFoundPageComponent should render the correct text phrase 1`] = `
+<h1>
+  404 - Page Not Found
+</h1>
+`;
