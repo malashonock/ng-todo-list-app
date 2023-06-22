@@ -30,8 +30,8 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the correct title', () => {
+  it('should match snapshot', () => {
     const h1DebugEl = fixture.debugElement.query(By.css('h1'));
-    expect(h1DebugEl.nativeElement.textContent).toBe('To-do List App');
+    expect(h1DebugEl.nativeElement).toMatchSnapshot();
   });
 });
