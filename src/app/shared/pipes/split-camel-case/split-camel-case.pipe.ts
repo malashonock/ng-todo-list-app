@@ -14,7 +14,7 @@ export class SplitCamelCasePipe implements PipeTransform {
     let i = -1;
 
     text.split('').forEach((letter: string, index: number) => {
-      const isUpper = letter === letter.toUpperCase();
+      const isUpper = letter === letter.toUpperCase() && letter !== letter.toLowerCase();
       const isFirst = index === 0;
 
       if (isFirst || isUpper) {
