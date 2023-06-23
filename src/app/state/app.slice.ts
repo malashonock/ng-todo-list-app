@@ -8,7 +8,7 @@ export interface AppState {
   error: string | null;
 }
 
-const initialState: AppState = {
+export const initialState: AppState = {
   loading: 0,
   error: null,
 };
@@ -19,7 +19,7 @@ export const AppSlice = createFeature({
     initialState,
     on(AppActions.loadingStart, AppActionReducers.loadingStartReducer),
     on(AppActions.loadingFinish, AppActionReducers.loadingFinishReducer),
-    on(AppActions.errorRaise, AppActionReducers.ErrorRaiseReducer),
-    on(AppActions.errorClear, AppActionReducers.ErrorClearReducer),
+    on(AppActions.errorRaise, AppActionReducers.errorRaiseReducer),
+    on(AppActions.errorClear, AppActionReducers.errorClearReducer),
   ),
 });

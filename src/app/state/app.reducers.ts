@@ -19,7 +19,7 @@ const loadingFinishReducer: OnReducer<
   loading: state.loading - 1,
 });
 
-const ErrorRaiseReducer: OnReducer<
+const errorRaiseReducer: OnReducer<
   AppState,
   [typeof AppActions.errorRaise]
 > = (state, { error }) => ({
@@ -27,7 +27,7 @@ const ErrorRaiseReducer: OnReducer<
   error,
 });
 
-const ErrorClearReducer: OnReducer<
+const errorClearReducer: OnReducer<
   AppState,
   [typeof AppActions.errorClear]
 > = (state) => ({
@@ -38,7 +38,7 @@ const ErrorClearReducer: OnReducer<
 export const AppActionReducers = {
   loadingStartReducer,
   loadingFinishReducer,
-  ErrorRaiseReducer,
-  ErrorClearReducer,
+  errorRaiseReducer,
+  errorClearReducer,
 };
 
