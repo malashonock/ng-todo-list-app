@@ -8,7 +8,7 @@ export interface AppState {
   error: string | null;
 }
 
-export const initialState: AppState = {
+const initialState: AppState = {
   loading: 0,
   error: null,
 };
